@@ -1,0 +1,30 @@
+{
+  "entry": "src/index.js",
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime",
+        ["import",{ "libraryName": "antd", "style": "css" }]
+      ],
+      "proxy": {
+        "/api": {
+          "target": "https://cnodejs.org/api/v1/",
+          "changeOrigin": true,
+          "pathRewrite": {"^/api": ""}
+        }
+      },
+      "autoprefixer": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime",
+        ["import",{ "libraryName": "antd", "style": "css" }]
+      ]
+    }
+  }
+}

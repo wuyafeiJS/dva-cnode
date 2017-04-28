@@ -5,7 +5,7 @@ import { Link } from 'dva/router';
 import Topics from '../components/Topics/Topics';
 import styles from './IndexPage.css';
 
-const { Header } = Layout;
+const { Header, Content } = Layout;
 const TabPane = Tabs.TabPane;
 
 class IndexPage extends Component {
@@ -95,12 +95,15 @@ class IndexPage extends Component {
               </Link>
             </Col>
           </Row>
+          
+        </Header>
+        <Content>
           <Tabs type="line" onTabClick={this.handlerTabClick.bind(this)}>
             {
               tabpane()
             }
           </Tabs>
-        </Header>
+        </Content>
       </div>
     );
   }

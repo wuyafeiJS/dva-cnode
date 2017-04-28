@@ -1,6 +1,7 @@
 import dva from 'dva';
 import createLoading from 'dva-loading';
 import './index.css';
+import 'github-markdown-css';
 
 // 1. Initialize
 const app = dva();

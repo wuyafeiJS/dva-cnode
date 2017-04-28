@@ -1,0 +1,39 @@
+.total {
+  padding-left: 20px;
+  padding-right: 20px;
+  line-height: 30px;
+  font-size: 1.5em;
+  color: #fff;
+  background: #5997ce;
+}
+.comments ul {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+ ul li {
+  padding-top: 20px;
+  position: relative;
+  padding-left: 80px;
+  min-height: 80px;
+}
+.comments dl {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #fff;
+}
+.comments dl img {
+  width: 50px;
+  border-radius: 50%;
+}
+.comments dl dd {
+  text-align: center;
+}
+.autorName, .details {
+  overflow: hidden;
+  
+}
+.autorName {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}

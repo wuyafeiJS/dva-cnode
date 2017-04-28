@@ -21,16 +21,16 @@ function RouterConfig({ history, app }) {
         });
       },
     },
-    // {
-    //   path: '/users',
-    //   name: 'UsersPage',
-    //   getComponent(nextState, cb) {
-    //     require.ensure([], (require) => {
-    //       registerModel(app, require('./models/users'));
-    //       cb(null, require('./routes/Users'));
-    //     });
-    //   },
-    // },
+    {
+      path: '/topic/:id',
+      name: 'Article',
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          registerModel(app, require('./models/article'));
+          cb(null, require('./routes/Article'));
+        });
+      },
+    },
   ];
 
   return <Router history={history} routes={routes} />;

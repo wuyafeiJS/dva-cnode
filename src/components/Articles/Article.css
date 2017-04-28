@@ -1,0 +1,34 @@
+
+.normal {
+}
+.header {
+  padding: 15px;
+  background: #ccc;
+}
+.header img {
+  width: 50px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 20px
+}
+.title {
+  line-height: 60px;
+  text-align: center;
+}
+.main {
+  padding: 20px;
+}
+.main p {
+  text-indent: 2em;
+}
+.main img {
+  display: block;
+  margin: 20px auto;
+  width: 600px;
+}
+@media (max-width: 750px){
+	.main img{
+    width: 80%;
+	}
+}
+

@@ -27,3 +27,63 @@
 .list code {
   background: #f7f7f7;
 }
+.sideBar {
+  position: fixed;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  margin-left: -50px;
+  background: #ccc;
+  z-index: 1000;
+}
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+.profile {
+  text-align: center;
+	padding:  0 20px 20px;
+  background: #4fafe6;
+}
+.profile img {
+  width: 50px;
+  height: 50px;
+  margin-top: 50px;
+  border-radius: 50%;
+}
+.profile>p {
+  margin: 10px;
+  font-size: 16px;
+  line-height: 24px;
+}
+.profile b {
+  display: inline-block;
+  width: 50px;
+  line-height: 50px;
+  margin-top: 50px;
+  background: #4b77b9;
+  border-radius: 50%;
+}
+.funcList li {
+  text-align: left;
+  color: #999;
+  line-height: 24px;
+  padding-left: 20px;
+}
+.message {
+  position: absolute;
+  display: block;
+  top: -10px;
+  left: 25px;
+  border-radius: 50%;
+  width: 20px;
+  line-height: 20px;
+  text-align: center;
+  background: #5c42ea;
+  color: #fff;
+}

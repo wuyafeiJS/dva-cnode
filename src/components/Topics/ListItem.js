@@ -6,7 +6,7 @@ import transformDate from '../../utils/transformDate';
 function ListItem({ value }) {
   const tabChn = { all: '全部', good: '精华', share: '分享', ask: '问答', job: '招聘' };
   return (
-    <li className={styles.normal}>
+    <div className={styles.normal}>
       <Link to={`topic/${value.id}`}>
         <img role="presentation" className={styles.avatar} src={value.author.avatar_url} />
         <div className={styles.title}>
@@ -26,7 +26,7 @@ function ListItem({ value }) {
           </p>
         </div>
       </Link>
-    </li>
+    </div>
   );
 }
 

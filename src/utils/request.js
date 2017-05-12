@@ -20,7 +20,7 @@ function checkStatus(response) {
 export default async function request(url, options) {
   const response = await fetch(url, options);
 
-  checkStatus(response);
+  // checkStatus(response);
 
   const data = await response.json();
 

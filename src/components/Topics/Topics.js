@@ -1,19 +1,23 @@
 import React from 'react';
+import { Spin } from 'antd';
 import styles from './Topics.css';
 import ListItem from './ListItem';
 
 
 function Topics({ data }) {
-  const topics = data.data;
+  const topics = data;
   return (
     <div className={styles.normal}>
-      <ul className={styles.list}>
+      <div className={styles.list}>
         {
           topics.map((v, k) => (
             <ListItem value={v} key={k} />
           ))
         }
-      </ul>
+      </div>
+      <div className={styles.spinner}>
+        <Spin type="large" />
+      </div>
     </div>
   );
 }

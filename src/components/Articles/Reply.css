@@ -10,7 +10,7 @@
   padding-left: 20px;
   padding-right: 20px;
 }
- ul li {
+.comments ul li {
   padding-top: 20px;
   position: relative;
   padding-left: 80px;
@@ -36,4 +36,9 @@
 .autorName {
   margin-top: 10px;
   margin-bottom: 20px;
+}
+.loginPart {
+  padding: 40px;
+  margin-top: 20px;
+  border-top: 5px solid #5997ce;
 }

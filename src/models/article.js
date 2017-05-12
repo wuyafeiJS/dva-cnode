@@ -7,6 +7,9 @@ export default {
     receiveArticle(state, { payload: { topicId, article } }) {
       return { ...state, topicId, article };
     },
+    receiveComment(state, { payload: { success, replyId } }) {
+      return { ...state, success, replyId };
+    },
   },
   effects: {
     *fetchArticle({ payload: { topicId } }, { call, put }) {
@@ -14,6 +17,22 @@ export default {
       yield put({
         type: 'receiveArticle',
         payload: { topicId, article: data.data },
+      });
+    },
+    *fetchComment({ payload: { accessToken, topicId, content, replyId } }, { call, put }) {
+      const { data } = yield call(usersService.fetchComment, { accessToken, topicId, content, replyId });
+      yield put({
+        type: 'receiveComment',
+        payload: {
+          success: data.success,
+          replyId: data.reply_id,
+        },
+      });
+      yield put({// 重新刷新评论区
+        type: 'fetchArticle',
+        payload: {
+          topicId,
+        },
       });
     },
   },

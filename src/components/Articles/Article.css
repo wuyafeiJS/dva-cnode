@@ -1,5 +1,6 @@
 
 .normal {
+  overflow: hidden;
 }
 .header {
   padding: 15px;

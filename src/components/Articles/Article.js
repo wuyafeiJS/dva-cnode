@@ -4,9 +4,9 @@ import Reply from './Reply';
 import styles from './Article.css';
 import transformDate from '../../utils/transformDate';
 
-function Article({ article }) {
+function Article({ article, loginData, dispatch }) {
   return (
-    <div>
+    <div className={styles.normal}>
       <Row className={styles.header}>
         <Col span={12} style={{ textAlign: 'left' }}>
           <img src={article.author.avatar_url} alt=""/>
@@ -34,7 +34,7 @@ function Article({ article }) {
           <div className={`${styles.main} markdown-body`} dangerouslySetInnerHTML={{__html: article.content}}></div>
         </div>
       </article>
-      <Reply replies={article.replies} />
+      <Reply dispatch={dispatch} currentTopicId={article.id} loginData={loginData} replies={article.replies} />
     </div>
   );
 }

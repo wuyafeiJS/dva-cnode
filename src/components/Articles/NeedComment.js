@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Link } from 'dva/router';
 import styles from './NeedComment.css';
+import getSize from '../../utils/getSize';
 
 const FormItem = Form.Item;
 class NeedComment extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { loginData, dispatch, currentTopicId } = this.props;
+    const { scrollT } = getSize();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         const text = values.comment;
+        dispatch({ type: 'Article/recordArticleScrollT', payload: { scrollT, topicId: currentTopicId } });
         dispatch({ type: 'Article/fetchComment', payload: { accessToken: loginData.accessToken, topicId: currentTopicId, content: text } });
       }
     });

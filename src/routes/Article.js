@@ -5,7 +5,7 @@ import styles from './Article.css';
 import Article from '../components/Articles/Article';
 
 const { Header, Content } = Layout;
-function ArticlePage({ loading, article, loginData, dispatch }) {
+function ArticlePage({ loading, article, isCommented, isSupported, loginData, currentT, dispatch }) {
   return (
     <div>
       <Header style={{ background: '#108EE9', color: '#fff' }}>
@@ -21,18 +21,21 @@ function ArticlePage({ loading, article, loginData, dispatch }) {
         </Row>
       </Header>
       <Content>
-        { loading ? <Spin size="large" className={styles.loadImg} /> : <Article dispatch={dispatch} loginData={loginData} article={article} /> }
+        { loading ? <Spin size="large" className={styles.loadImg} /> : <Article currentT={currentT} isCommented={isCommented} isSupported={isSupported} dispatch={dispatch} loginData={loginData} article={article} /> }
       </Content>
     </div>
   );
 }
 
 function mapStateToProps(state) {
-  const { article } = state.Article;
+  const { article, isCommented, isSupported, topicId } = state.Article;
   return {
     loading: state.loading.models.Article,
     loginData: state.login,
     article,
+    isCommented,
+    isSupported,
+    currentT: state.Article[topicId],
   };
 }
 

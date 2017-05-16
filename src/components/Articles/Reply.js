@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Icon } from 'antd';
+import { Icon, Modal } from 'antd';
 import { Link } from 'dva/router';
+import { routerRedux } from 'dva/router';
+import getSize from '../../utils/getSize';
 import NeedComment from './NeedComment';
 import transformDate from '../../utils/transformDate';
 import styles from './Reply.css';
@@ -9,16 +11,64 @@ class Reply extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isSupported: [],
+      supportNum: [],
       commentShow: [],
       name: [],
+      showModal: false,
+      toLoginDialog: false,
     };
+  }
+  componentWillMount() {
+    const { replies, loginData } = this.props;
+    this.supportState(replies, loginData);
+  }
+  componentWillReceiveProps(nextProps) {
+    const { replies, loginData, isSupported, currentT } = nextProps;
+    if (currentT) {
+      window.scrollTo(0, currentT);
+    }
+    if (isSupported) {
+      this.supportState(replies, loginData);
+    }
+  }
+  supportState(replies, loginData) {
+    const isSupported = replies.map((v) => {
+      return v.ups.some(up => up === loginData.loginId);
+    });
+    const supportNum = replies.map(v => v.ups.length);
+    this.setState({ isSupported, supportNum });
+  }
+  handleOk = () => {
+    this.setState({
+      showModal: false,
+    });
+  }
+  handleCancel = () => {
+    this.setState({
+      toLoginDialog: false,
+    });
+  }
+  handleLoginOk() {
+    const { dispatch } = this.props;
+    dispatch(routerRedux.push('/login'));
   }
   render() {
     const { replies, loginData, dispatch, currentTopicId } = this.props;
-    console.log(loginData)
     return (
       <div className={styles.comments}>
         <p className={styles.total}>共有{ replies.length }条回复</p>
+        <Modal title="提示" visible={this.state.showModal}
+          onOk={this.handleOk} okText="确定"
+        >
+          <p>不能给自己点赞！！！</p>
+        </Modal>
+        <Modal title="提示" visible={this.state.toLoginDialog}
+          onOk={this.handleLoginOk.bind(this)} onCancel={this.handleCancel}
+          okText="登录" cancelText="取消"
+        >
+          <p>您还未登录！！！</p>
+        </Modal>
         <ul>
           {
             replies.map((v, k) => (
@@ -50,13 +100,21 @@ class Reply extends Component {
                       style={{ cursor: 'pointer' }}
                       onClick={e => {
                         e.stopPropagation();
-                        if (loginData.loginId) {
-                          
+                        if (loginData.succeed) {
+                          if (v.author.loginname !== loginData.loginName) {
+                            const { scrollT } = getSize();
+                            dispatch({ type: 'Article/recordArticleScrollT', payload: { scrollT, topicId: currentTopicId } })
+                            dispatch({ type: 'Article/switchSupport', payload: { accessToken: loginData.accessToken, replyId: v.id, index: k } });
+                          } else {
+                            this.setState({ showModal: true });
+                          }
+                        } else {
+                          this.setState({ toLoginDialog: true });
                         }
                       }}
                     >
-                      <Icon type="like" />
-                      { v.ups.length }
+                      <Icon type="like" style={{ color: this.state.isSupported[k] ? '#f00' : '#000' }} />
+                      { this.state.supportNum[k] || 0 }
                     </span>
                   </span>
                 </div>

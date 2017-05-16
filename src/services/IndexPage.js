@@ -40,3 +40,12 @@ export function fetchComment({ accessToken, topicId, content, replyId }) {
     body: postConent,
   });
 }
+export function fetchSupport({ replyId, accessToken }) {
+  return request(`/api/reply/${replyId}/ups`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `accesstoken=${accessToken}`,
+  });
+}

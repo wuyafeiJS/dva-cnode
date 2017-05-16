@@ -24,6 +24,9 @@
     "import/no-unresolved": [0],
     "require-yield": [1]
   },
+  "env": {
+    "browser": true
+  },
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true

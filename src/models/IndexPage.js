@@ -4,8 +4,8 @@ export default {
   namespace: 'IndexPage',
   state: { tab: 'all', data: [] },
   reducers: {
-    selectTab(state, { payload: tab }) {
-      return { ...state, tab };
+    selectTab(state, { payload: { tab, activeKey } }) {
+      return { ...state, tab, activeKey };
     },
     tabData(state, { payload: { data, page } }) {
       if (state.page < page) {

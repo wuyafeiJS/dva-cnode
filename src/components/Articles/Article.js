@@ -4,7 +4,7 @@ import Reply from './Reply';
 import styles from './Article.css';
 import transformDate from '../../utils/transformDate';
 
-function Article({ article, loginData, dispatch }) {
+function Article({ article, loginData, isSupported, isCommented, currentT, dispatch }) {
   return (
     <div className={styles.normal}>
       <Row className={styles.header}>
@@ -34,7 +34,7 @@ function Article({ article, loginData, dispatch }) {
           <div className={`${styles.main} markdown-body`} dangerouslySetInnerHTML={{__html: article.content}}></div>
         </div>
       </article>
-      <Reply dispatch={dispatch} currentTopicId={article.id} loginData={loginData} replies={article.replies} />
+      <Reply dispatch={dispatch} currentT={currentT} isCommented={isCommented} isSupported={isSupported} currentTopicId={article.id} loginData={loginData} replies={article.replies} />
     </div>
   );
 }

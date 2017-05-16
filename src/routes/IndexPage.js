@@ -18,9 +18,12 @@ class IndexPage extends Component {
       scrollT: 0,
     };
   }
+  componentWillMount() {
+    //
+  }
   componentDidMount() {
-    const { dispatch, tab, page, scrollT } = this.props;
-    dispatch({ type: 'IndexPage/fetchTopics', payload: { tab: 'all' } });
+    const { dispatch, tab } = this.props;
+    dispatch({ type: 'IndexPage/fetchTopics', payload: { tab } });
     // if (scrollT) {
     //   widnow.scrollTo(0, scrollT);
     // }
@@ -126,7 +129,7 @@ class IndexPage extends Component {
     const { dispatch } = this.props;
     const tab = this.tabs[activeKey].filter;
     dispatch({ type: 'IndexPage/fetchTopics', payload: { tab } });
-    dispatch({ type: 'IndexPage/selectTab', payload: tab });
+    dispatch({ type: 'IndexPage/selectTab', payload: { tab, activeKey: activeKey.toString() } });
   }
   handleClick() {
     this.setState({ sideShow: true });
@@ -142,7 +145,7 @@ class IndexPage extends Component {
     dispatch({ type: 'login/loginOut' });
   }
   render() {
-    const { data, loading, loading2, dispatch, tab, profile, loginData, message } = this.props;
+    const { data, loading, loading2, dispatch, tab, profile, loginData, message, activeKey } = this.props;
     const succeed = loginData.succeed;
     if (!loading2 && succeed) {
       var { avatar_url, create_at, loginname, score } = profile.profile;// 不能用const或者let，因为他们形成了块级作用域
@@ -206,7 +209,7 @@ class IndexPage extends Component {
           </div>
         </Header>
         <Content>
-          <Tabs type="line" onTabClick={this.handlerTabClick.bind(this)}>
+          <Tabs type="line" defaultActiveKey={activeKey || '0'} onTabClick={this.handlerTabClick.bind(this)}>
             {
               tabpane()
             }
@@ -218,7 +221,7 @@ class IndexPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { data, tab, page, scrollT } = state.IndexPage;
+  const { data, tab, page, scrollT, activeKey } = state.IndexPage;
   return {
     loading: state.loading.models.IndexPage,
     loading2: state.loading.models.profile,
@@ -230,6 +233,7 @@ const mapStateToProps = (state) => {
     tab,
     page,
     scrollT,
+    activeKey,
   };
 };
 export default connect(mapStateToProps)(IndexPage);

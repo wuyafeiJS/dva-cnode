@@ -1,6 +1,10 @@
 # dva-cnode
-用dva数据交互框架写cnode项目
-...
+
+用dva数据交互框架写具有登录功能的cnode项目。
+
+![](images/1.png) ![](images/2.png) 
+![](images/3.png) ![](images/4.png) 
+
 ## 为什么要用dva ?
 
 经过一段时间的自学或培训，大家应该都能理解 redux 的概念，并认可这种数据流的控制可以让应用更可控，以及让逻辑更清晰。

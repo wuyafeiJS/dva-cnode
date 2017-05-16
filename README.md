@@ -18,7 +18,7 @@
 
 我个人认为dva相对于redux开发起来要方便很多。比如你不必单独的去创建action.js文件。dva是直接在dispatch时写清楚action就行了。它把侧重点放在了
 model（类似于reducer但比它做的事情要多）文件里面，便于数据逻辑的统一维护。特别是对于异步action,dva处理起来要轻松很多。你不必去在意请求时
-isFetching的状态，不需要每个异步求情都要派发三个action，因为dva内置loading插件，它会根据请求状态自动更新，从而让你专注于请求逻辑就行了。
+isFetching的状态，不需要每个异步请求都要派发三个action，因为dva内置loading插件，它会根据请求状态自动更新，从而让你专注于请求逻辑就行了。
 ...
 而 dva 正是用于解决这些问题。
 ## Getting Started
